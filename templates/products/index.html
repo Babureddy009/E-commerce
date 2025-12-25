@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Products</h2>
+
+{% for category, products in categorized_products.items() %}
+
+<h3 class="category-title">{{ category }}</h3>
+
+<div class="product-row">
+    {% for p in products %}
+    <div class="product-card" data-product-id="{{ p.id }}">
+
+        <!-- PRODUCT IMAGE -->
+        <img src="{{ url_for('static', filename='uploads/products/' ~ p.image) }}"
+             alt="{{ p.name }}">
+
+        <!-- PRODUCT NAME -->
+        <h4>{{ p.name }}</h4>
+
+        <!-- PRODUCT PRICE -->
+        <p>₹{{ p.price }}</p>
+
+        <!-- ACTION BUTTONS (ONLY ONCE, INSIDE CARD) -->
+        <div class="cart-action">
+
+    <!-- ADD / QTY AREA -->
+    <div class="qty-area">
+        <button class="add-btn">Add to Cart</button>
+    </div>
+
+    <!-- BUY NOW (ALWAYS VISIBLE) -->
+    <a href="/buy_now/{{ p.id }}" class="buy-now-btn">
+        Buy Now
+    </a>
+
+</div>
+
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endfor %}
+
+{% endblock %}

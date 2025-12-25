@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>My Account</h2>
+
+<div class="account-container">
+
+    <!-- LEFT MENU -->
+    <div class="account-menu">
+        <a href="#" onclick="showSection('profile')">Profile</a>
+        <a href="#" onclick="showSection('orders')">Orders</a>
+        <a href="#" onclick="showSection('addresses')">Addresses</a>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="account-content">
+
+        <!-- ================= PROFILE ================= -->
+        <section id="profile" class="account-section">
+            <h3>Profile Details</h3>
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </section>
+
+        <!-- ================= ORDERS ================= -->
+        <section id="orders" class="account-section" style="display:none;">
+    <h3>Order History</h3>
+
+    {% if orders %}
+        {% for o in orders %}
+        <div class="order-box">
+            <p><strong>Order ID:</strong> #{{ o.id }}</p>
+            <p><strong>Status:</strong> {{ o.status }}</p>
+            <p><strong>Date:</strong> {{ o.created_at.strftime('%d-%m-%Y') }}</p>
+
+            <table width="100%" border="1" cellpadding="8">
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                </tr>
+
+                {% for item in order_items_map[o.id] %}
+                <tr>
+                    <td>{{ item.product_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹{{ item.price }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <p><strong>Total:</strong> ₹{{ o.total }}</p>
+            <hr>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No orders placed yet.</p>
+    {% endif %}
+</section>
+
+
+        <!-- ================= ADDRESSES ================= -->
+        <!-- ADDRESSES -->
+<section id="addresses" class="account-section" style="display:none;">
+    <h3>Saved Addresses</h3>
+
+    {% if addresses %}
+        {% for a in addresses %}
+        <div class="address-box">
+            <div class="address-left">
+                <p>{{ a.address }}</p>
+                <p>{{ a.city }}, {{ a.state }}</p>
+                <p>Pincode: {{ a.pincode }}</p>
+            </div>
+
+            <div class="address-actions">
+                <!-- MODIFY -->
+                <a href="/account/edit_address/{{ a.id }}" class="btn-outline">
+                    Modify
+                </a>
+
+                <!-- DELETE -->
+                <a href="/account/delete_address/{{ a.id }}"
+                   class="btn-danger"
+                   onclick="return confirm('Delete this address?');">
+                    Delete
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No address found.</p>
+    {% endif %}
+
+    <hr>
+
+    <h3>Add New Address</h3>
+    <form method="POST" action="/account/add_address">
+        <textarea name="address" required placeholder="Address"></textarea><br><br>
+        <input type="text" name="city" placeholder="City" required><br><br>
+        <input type="text" name="state" placeholder="State" required><br><br>
+        <input type="text" name="pincode" placeholder="Pincode" required><br><br>
+        <button class="btn">Add Address</button>
+    </form>
+</section>
+
+
+    </div>
+
+</div>
+
+<script>
+function showSection(id) {
+    document.querySelectorAll(".account-section").forEach(sec => {
+        sec.style.display = "none";
+    });
+    document.getElementById(id).style.display = "block";
+}
+
+// 🔥 AUTO OPEN BASED ON URL
+const params = new URLSearchParams(window.location.search);
+const tab = params.get("tab");
+
+if (tab === "addresses") {
+    showSection("addresses");
+} else if (tab === "orders") {
+    showSection("orders");
+} else {
+    showSection("profile");
+}
+</script>
+
+
+{% endblock %}

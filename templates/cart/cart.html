@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Your Shopping Cart</h2>
+
+{% if items %}
+
+<table border="1" cellpadding="10" width="100%">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Action</th>
+    </tr>
+
+    {% for i in items %}
+    <tr>
+        <td>{{ i.name }}</td>
+        <td>{{ i.quantity }}</td>
+        <td>₹{{ i.price }}</td>
+        <td>₹{{ i.total_price }}</td>
+        <td>
+            <!-- ✅ WORKING REMOVE BUTTON -->
+            <a href="/remove/{{ i.product_id }}"
+               class="remove-btn"
+               onclick="return confirm('Remove this item from cart?');"
+               style="background:red;color:white;padding:6px 10px;text-decoration:none;border-radius:4px;">
+                Remove
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<!-- PRICE DETAILS -->
+<div class="price-details">
+    <p><strong>Subtotal:</strong> ₹{{ cart_total }}</p>
+
+    {% if platform_fee > 0 %}
+        <p><strong>Platform Fee:</strong> ₹{{ platform_fee }}</p>
+    {% endif %}
+
+    <hr>
+
+    <h3>Total Amount: ₹{{ grand_total }}</h3>
+</div>
+
+<br>
+
+<a href="/checkout" class="btn">Proceed to Checkout</a>
+
+{% else %}
+<p>Your cart is empty 🛒</p>
+<a href="/" class="btn">Shop Now</a>
+{% endif %}
+
+{% endblock %}

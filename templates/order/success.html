@@ -1,0 +1,13 @@
+
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="order-success-container">
+    <h2>Order Placed Successfully 🎉</h2>
+    <p>Your order has been placed using <strong>{{ payment_method }}</strong>.</p>
+
+    <a href="/" class="btn continue-btn">Continue Shopping</a>
+</div>
+
+{% endblock %}

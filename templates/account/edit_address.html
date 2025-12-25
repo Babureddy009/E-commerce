@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Modify Address</h2>
+
+<form method="POST"
+      action="/account/update_address/{{ address.id }}"
+      class="address-form">
+
+    <textarea name="address" required>{{ address.address }}</textarea><br><br>
+
+    <input type="text" name="city"
+           value="{{ address.city }}" required><br><br>
+
+    <input type="text" name="state"
+           value="{{ address.state }}" required><br><br>
+
+    <input type="text" name="pincode"
+           value="{{ address.pincode }}" required><br><br>
+
+    <button class="btn">Update Address</button>
+    <a href="/account#addresses" class="btn-outline">Cancel</a>
+</form>
+
+{% endblock %}

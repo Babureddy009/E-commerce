@@ -1,0 +1,541 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+/* ================= NAVBAR FIXED ================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 97%;
+    height: 70px;
+     background-color: #842d2d;
+    color: rgb(253, 251, 251);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    z-index: 1000;
+}
+
+/* Push page content below navbar */
+.container {
+    margin-top: 60px;
+    padding: 20px;
+}
+
+/* ================= LEFT LOGO ================= */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Navbar logo */
+.logo {
+    font-size: 26px;      /* 🔥 increase size */
+    font-weight: bold;
+    color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 200px;     /* increase/decrease as needed */
+    width: auto;
+}
+
+/* ================= SEARCH BAR ================= */
+.search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-left: -40px; 
+     /* 🔥 move search slightly LEFT */
+}
+
+.search-bar input {
+    width: 55%;
+    font-size: 20px; 
+    max-width: 600px;
+    height: 25px;
+    padding: 8px 12px;
+    border-radius: 4px 0 0 4px;
+    border: none;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    font-size: 20px; 
+    font-weight: bold;
+    border: none;
+    background: #ff9f00;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+/* ================= NAV LINKS ================= */
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;     /* 🔥 reduced size */
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ================= FLASH MESSAGE ================= */
+.flash {
+    color: green;
+}
+
+/* ================= CATEGORY TITLE ================= */
+.category-title {
+    margin: 25px 0 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* ================= PRODUCT ROW ================= */
+.product-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* ================= PRODUCT CARD ================= */
+.product-card {
+    width: 400px;
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: 100%;              /* increase image size */
+    height: 180px;            /* keep height same */
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+               /* 🔥 CENTER THE IMAGE */
+}
+
+
+/* ================= BUTTONS ================= */
+button, .btn {
+    background: #2874f0;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* ================= GRID (OTHER PAGES) ================= */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+.cart-action {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.qty-area {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qty-btn {
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.qty {
+    font-weight: bold;
+}
+
+/* ================= CART & BUY BUTTONS ================= */
+.add-btn,
+.buy-now-btn {
+    background: #2874f0;        /* same base color */
+    color: white;
+    padding: 8px 16px;          /* SAME SIZE */
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Optional: Different color for Buy Now */
+.buy-now-btn {
+    background: #fb641b;        /* Flipkart orange */
+}
+
+/* Hover effect (optional but professional) */
+.add-btn:hover {
+    background: #1f5fd6;
+}
+
+.buy-now-btn:hover {
+    background: #e55b16;
+}
+
+.checkout-container {
+    display: flex;
+    gap: 20px;
+}
+
+.checkout-left {
+    flex: 2;
+}
+
+.checkout-right {
+    flex: 1;
+    position: sticky;     /* 🔥 STICKY FIX */
+    top: 80px;             /* below navbar */
+    align-self: flex-start;
+}
+
+
+.checkout-box {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.checkout-box h3 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.order-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.order-item img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border: 1px solid #ddd;
+}
+
+.order-details h4 {
+    margin: 0;
+}
+
+.qty-control {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.qty-control button {
+    padding: 4px 10px;
+}
+
+.remove {
+    color: #375d9a;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.price-row.total {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.place-order-btn {
+    width: 100%;
+    background: #e46e33;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    
+}
+.place-order-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+     text-decoration: none;     /* 🔥 removes underline */
+    border: none;
+    outline: none;
+}
+
+
+.btn-outline {
+    border: 1px solid #2874f0;
+    color: #2874f0;
+    background: none;
+    padding: 6px 12px;
+}
+.qty-btn {
+    text-decoration: none;
+    border: 1px solid #c2c2c2;
+    padding: 4px 10px;
+    font-weight: bold;
+    color: #2874f0;
+    border-radius: 3px;
+}
+
+.account-container {
+    display: flex;
+    gap: 20px;
+}
+
+.account-menu {
+    width: 200px;
+    background: white;
+    padding: 15px;
+}
+
+.account-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #2874f0;
+    font-weight: bold;
+}
+
+.account-content {
+    flex: 1;
+    background: white;
+    padding: 20px;
+}
+
+.address-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.account-section {
+    animation: fade 0.3s ease;
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+textarea, input {
+    width: 100%;
+    padding: 8px;
+}
+.address-form textarea,
+.address-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.btn-outline {
+    border: 1px solid #2874f0;
+    color: #2874f0;
+    padding: 6px 12px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 8px;
+    border-radius: 3px;
+}
+
+.payment-container {
+    max-width: 100%;
+    
+    background: white;
+    padding: 20px;
+    
+}
+
+.payment-option {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.price-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-box input {
+    width: 100%;
+    padding: 10px;
+   
+}
+
+.pay-btn {
+    margin-top: 15px;
+    width: 100%;
+    background: #fb641b;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+}
+.payment-title {
+    margin: 20px 0;
+}
+
+.payment-container {
+    display: flex;
+    gap: 20px;
+    width:100%;
+    justify-content: flex-start;
+}
+
+.payment-left {
+    width:100%;
+    font-size: 22px;
+    background: white;
+    border-right: 1px solid #ddd;
+}
+
+.pay-method {
+    padding: 15px;
+    width: 100%;
+    
+    cursor: pointer;
+    border-bottom: 1px solid #fcfafa;
+}
+
+.pay-method.active {
+    background: #f1f3f6;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.payment-center {
+    width: 100%;
+    
+    font-size: 22px;
+    background: rgb(250, 249, 249);
+    padding: 25px;
+}
+
+.payment-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.pay-btn {
+    margin-top: 20px;
+    width: 100%;
+    background: #fb641b;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.payment-right {
+    width: 100%;
+    font-size: 20px;
+    position: sticky;
+    top: 80px;
+    padding: 10px;
+}
+
+.price-box h3 {
+    font-size: 25px;      /* bigger heading */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.price-row.total span {
+    font-size: 22px;      /* 🔥 main highlight */
+    font-weight: bold;
+}
+
+/* ================= SPACE BETWEEN SECTIONS ================= */
+
+/* Space between category title and previous section */
+.category-title {
+    margin-top: 50px;     /* 🔥 space before each section */
+    margin-bottom: 20px;  /* space below title */
+}
+
+/* Space before each category */
+.category-title {
+    margin-top: 60px;     /* 🔥 space between sections */
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+/* Home page main heading */
+h2 {
+    font-size: 40px;      /* 🔥 increase size */
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Order success page */
+.order-success-container {
+    min-height: 60vh;          /* center vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* vertical center */
+    align-items: center;       /* horizontal center */
+    text-align: center;
+}
+
+.order-success-container h2 {
+    font-size: 45px;
+    margin-bottom: 10px;
+     padding-left: 60px;
+}
+
+.order-success-container p {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.continue-btn {
+    padding: 10px 18px;
+    font-size: 20px;
+}

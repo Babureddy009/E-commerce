@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Add Product</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Product Name" required><br><br>
+    <input type="number" step="0.01" name="price" placeholder="Price" required><br><br>
+    <textarea name="description" placeholder="Description"></textarea><br><br>
+
+    <select name="category_id" required>
+        <option value="1">Clothes</option>
+        <option value="2">Shoes</option>
+        <option value="3">Electronics</option>
+        <option value="4">Bags</option>
+    </select><br><br>
+
+    <input type="file" name="image" required><br><br>
+
+    <button>Add Product</button>
+</form>
+
+{% endblock %}

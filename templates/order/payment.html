@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="payment-title">Complete Payment</h2>
+
+<div class="payment-container">
+
+    <!-- LEFT: PAYMENT METHODS -->
+    <div class="payment-left">
+        <div class="pay-method active" onclick="selectMethod('upi', event)">UPI</div>
+        <div class="pay-method" onclick="selectMethod('card', event)">Credit / Debit Card</div>
+        <div class="pay-method" onclick="selectMethod('cod', event)">Cash on Delivery</div>
+    </div>
+
+    <!-- CENTER: PAYMENT FORM -->
+    <div class="payment-center">
+        <form method="POST" action="/place_order">
+
+            <!-- selected payment -->
+            <input type="hidden" name="payment_method" id="payment_method" value="UPI">
+
+            <!-- ================= UPI ================= -->
+            <div id="upi-box" class="payment-box">
+                <h3>Pay using UPI</h3>
+                <input type="text"
+                       name="upi_id"
+                       id="upi_input"
+                       placeholder="Enter UPI ID (example@upi)"
+                       required>
+            </div>
+
+            <!-- ================= CARD ================= -->
+            <div id="card-box" class="payment-box" style="display:none;">
+                <h3>Pay using Card</h3>
+
+                <input type="text"
+                       name="card_number"
+                       id="card_number"
+                       placeholder="Card Number"><br><br>
+
+                <input type="text"
+                       name="card_expiry"
+                       id="card_expiry"
+                       placeholder="Valid Thru (MM/YY)"><br><br>
+
+                <input type="password"
+                       name="card_cvv"
+                       id="card_cvv"
+                       placeholder="CVV">
+            </div>
+
+            <!-- ================= COD ================= -->
+            <div id="cod-box" class="payment-box" style="display:none;">
+                <h3>Cash on Delivery</h3>
+                <p>You will pay when the product is delivered.</p>
+            </div>
+
+            <!-- SUBMIT -->
+            <button type="submit" class="pay-btn" id="payBtn">
+                Pay ₹{{ grand_total }}
+            </button>
+
+        </form>
+    </div>
+
+    <!-- RIGHT: PRICE DETAILS -->
+    <div class="payment-right">
+        <div class="checkout-box price-box">
+            <h3>PRICE DETAILS</h3>
+
+            <div class="price-row">
+                <span>Price</span>
+                <span>₹{{ total_price }}</span>
+            </div>
+
+            <div class="price-row">
+                <span>Platform Fee</span>
+                <span>₹{{ platform_fee }}</span>
+            </div>
+
+            <hr>
+
+            <div class="price-row total">
+                <span>Total Amount</span>
+                <span>₹{{ grand_total }}</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function selectMethod(method, e) {
+
+    // hide all
+    document.getElementById("upi-box").style.display = "none";
+    document.getElementById("card-box").style.display = "none";
+    document.getElementById("cod-box").style.display = "none";
+
+    // remove active
+    document.querySelectorAll(".pay-method").forEach(el => el.classList.remove("active"));
+    e.target.classList.add("active");
+
+    // reset required attributes
+    document.getElementById("upi_input").required = false;
+    document.getElementById("card_number").required = false;
+    document.getElementById("card_expiry").required = false;
+    document.getElementById("card_cvv").required = false;
+
+    // show selected
+    document.getElementById(method + "-box").style.display = "block";
+    document.getElementById("payment_method").value = method.toUpperCase();
+
+    const payBtn = document.getElementById("payBtn");
+
+    if (method === "upi") {
+        document.getElementById("upi_input").required = true;
+        payBtn.innerText = "Pay ₹{{ grand_total }}";
+    }
+
+    if (method === "card") {
+        document.getElementById("card_number").required = true;
+        document.getElementById("card_expiry").required = true;
+        document.getElementById("card_cvv").required = true;
+        payBtn.innerText = "Pay ₹{{ grand_total }}";
+    }
+
+    if (method === "cod") {
+        payBtn.innerText = "PLACE ORDER";
+    }
+}
+</script>
+
+{% endblock %}

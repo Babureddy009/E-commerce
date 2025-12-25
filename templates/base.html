@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Commerce</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+
+    <!-- LEFT: LOGO -->
+    <div class="nav-left">
+       <div class="logo">
+    <a href="/">
+        <img src="{{ url_for('static', filename='uploads/products/logo.png') }}"
+             alt="ShopKart Logo">
+    </a>
+</div>
+
+
+    </div>
+
+    <!-- CENTER: SEARCH BAR -->
+    <form method="GET" action="/" class="search-bar">
+        <input type="text"
+               name="search"
+               placeholder="Search for products"
+               value="{{ request.args.get('search','') }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- RIGHT: NAV LINKS -->
+    <div class="nav-links">
+        <a href="/">Home</a>
+
+        {% if session.user_id %}
+            <a href="/cart">🛒 Cart</a>
+            <a href="/account">Account</a>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Signup</a>
+        {% endif %}
+    </div>
+
+</nav>
+
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% for msg in messages %}
+            <p class="flash">{{ msg }}</p>
+        {% endfor %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

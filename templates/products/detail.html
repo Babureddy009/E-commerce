@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="max-width:800px; margin:auto; text-align:center;">
+
+    <!-- PRODUCT IMAGE -->
+    <img src="{{ url_for('static', filename='uploads/products/' ~ product.image) }}"
+         alt="{{ product.name }}"
+         style="width:350px; height:350px; object-fit:contain; border:1px solid #ddd; margin-bottom:20px;">
+
+    <!-- PRODUCT DETAILS -->
+    <h2>{{ product.name }}</h2>
+    <p style="font-size:18px;">₹{{ product.price }}</p>
+    <p>{{ product.description }}</p>
+
+    <a href="/add/{{ product.id }}" class="btn" style="margin-top:15px;">
+        Add to Cart
+    </a>
+<div style="margin-top:15px; display:flex; justify-content:center; gap:15px;">
+    <a href="/add/{{ product.id }}" class="btn">Add to Cart</a>
+
+    <a href="/buy_now/{{ product.id }}" class="btn buy-now-btn">
+        Buy Now
+    </a>
+</div>
+
+</div>
+
+{% endblock %}

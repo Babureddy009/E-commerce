@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="checkout-container">
+
+    <!-- LEFT SECTION -->
+    <div class="checkout-left">
+
+        <!-- DELIVERY ADDRESS -->
+        <!-- DELIVERY ADDRESS -->
+<div class="checkout-box">
+    <h3>DELIVERY ADDRESS</h3>
+
+    {% if address %}
+        <p>{{ address.address }}</p>
+        <p>{{ address.city }}, {{ address.state }}</p>
+        <p>Pincode: {{ address.pincode }}</p>
+
+        <!-- 🔥 ACTION BUTTONS -->
+        <div class="address-actions">
+            <button class="btn-outline" onclick="toggleAddressList()">
+                CHANGE
+            </button>
+
+            <a href="/account?tab=addresses" class="btn">
+            ADD NEW ADDRESS
+            </a>
+
+        </div>
+
+    {% else %}
+        <p>No delivery address found.</p>
+
+        <a href="/account#addresses" class="btn">
+            Add Address
+        </a>
+    {% endif %}
+</div>
+
+
+        <!-- 🔥 ADDRESS SELECTION LIST (HIDDEN) -->
+        <div id="address-list" class="checkout-box" style="display:none;">
+            <h3>Select Delivery Address</h3>
+
+            {% for a in addresses %}
+                <div class="address-box">
+                    <p>{{ a.address }}</p>
+                    <p>{{ a.city }}, {{ a.state }}</p>
+                    <p>Pincode: {{ a.pincode }}</p>
+
+                    <a href="/checkout/select_address/{{ a.id }}" class="btn">
+                        Deliver Here
+                    </a>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div class="checkout-box">
+            <h3>ORDER SUMMARY</h3>
+
+            {% for item in items %}
+            <div class="order-item">
+
+                <!-- PRODUCT IMAGE -->
+                <img src="{{ url_for('static', filename='uploads/products/' ~ item.image) }}"
+                     alt="{{ item.name }}">
+
+                <!-- PRODUCT DETAILS -->
+                <div class="order-details">
+                    <h4>{{ item.name }}</h4>
+                    <p>₹{{ item.price }}</p>
+
+                    <!-- QUANTITY CONTROLS -->
+                    <div class="qty-control">
+                        <a href="/cart/update/{{ item.product_id }}/minus"
+                           class="qty-btn">−</a>
+
+                        <span class="qty">{{ item.quantity }}</span>
+
+                        <a href="/cart/update/{{ item.product_id }}/plus"
+                           class="qty-btn">+</a>
+                    </div>
+
+                    <!-- REMOVE -->
+                    <a href="/remove/{{ item.product_id }}"
+                       class="remove-link">
+                        REMOVE
+                    </a>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <!-- RIGHT SECTION -->
+    <div class="checkout-right">
+        <div class="checkout-box price-box">
+
+            <h3>PRICE DETAILS</h3>
+
+            <div class="price-row">
+                <span>Price ({{ total_items }} items)</span>
+                <span>₹{{ total_price }}</span>
+            </div>
+
+            {% if platform_fee > 0 %}
+            <div class="price-row">
+                <span>Platform Fee</span>
+                <span>₹{{ platform_fee }}</span>
+            </div>
+            {% endif %}
+
+            <hr>
+
+            <div class="price-row total">
+                <span>Total Payable</span>
+                <span>₹{{ grand_total }}</span>
+            </div>
+
+            <!-- CONTINUE -->
+            {% if address %}
+                <a href="/payment" class="place-order-btn full-width">
+                    CONTINUE
+                </a>
+            {% else %}
+                <button class="place-order-btn full-width disabled" disabled>
+                    ADD ADDRESS TO CONTINUE
+                </button>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+<!-- 🔥 TOGGLE ADDRESS LIST -->
+<script>
+function toggleAddressList() {
+    const box = document.getElementById("address-list");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+}
+</script>
+
+{% endblock %}
