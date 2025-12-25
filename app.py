@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from config import SECRET_KEY
 from blueprints.auth import auth_bp
@@ -17,4 +18,10 @@ app.register_blueprint(account_bp)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+    host="0.0.0.0",
+    port=int(os.environ.get("PORT", 5000)),
+    debug=False
+)
+
+
