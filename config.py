@@ -10,10 +10,11 @@ SECRET_KEY = "supersecretkey"
 
 
 MYSQL_CONFIG = {
-    "host": "localhost",
+    "host": "host.docker.internal",
     "user": "root",
     "password": "Babu@123",
     "database": "ecommerce"
 }
 
 SECRET_KEY = "supersecretkey"
+
