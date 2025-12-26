@@ -12,7 +12,7 @@ def register():
         password = generate_password_hash(request.form["password"])
 
         db = get_db()
-        cursor = db.cursor()
+        cursor = db.cursor(dictionary=True)
         cursor.execute(
             "INSERT INTO users(name,email,password) VALUES(%s,%s,%s)",
             (name,email,password)
@@ -45,3 +45,4 @@ def login():
 def logout():
     session.clear()
     return redirect("/login")
+
