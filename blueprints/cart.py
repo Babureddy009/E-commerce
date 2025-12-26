@@ -94,7 +94,7 @@ def remove_item(pid):
 
     uid = session["user_id"]
     db = get_db()
-    cursor = db.cursor()
+    cursor = db.cursor(dictionary=True)
 
     cursor.execute(
         "DELETE FROM cart WHERE user_id=%s AND product_id=%s",
@@ -115,7 +115,8 @@ def clear_cart():
 
     uid = session["user_id"]
     db = get_db()
-    cursor = db.cursor()
+    cursor = db.cursor(dictionary=True)
+
 
     cursor.execute("DELETE FROM cart WHERE user_id=%s", (uid,))
     db.commit()
@@ -270,3 +271,4 @@ def update_cart_from_checkout(pid, action):
 
     db.commit()
     return redirect("/checkout")
+
