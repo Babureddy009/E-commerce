@@ -15,3 +15,4 @@ MYSQL_CONFIG = {
     "port": int(os.getenv("DB_PORT", 3306))
 }
 
+
