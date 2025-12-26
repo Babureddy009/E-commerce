@@ -80,7 +80,7 @@ def add_product():
             image.save(os.path.join(UPLOAD_FOLDER, filename))
 
             db = get_db()
-            cursor = db.cursor()
+            cursor = db.cursor(dictionary=True)
             cursor.execute("""
                 INSERT INTO products (name, price, description, category_id, image)
                 VALUES (%s, %s, %s, %s, %s)
@@ -91,5 +91,6 @@ def add_product():
             return redirect("/")
 
         flash("Invalid image file")
+
 
     return render_template("admin/add_product.html")
