@@ -113,14 +113,14 @@ body {
 .product-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 50px;
 }
 
 /* ================= PRODUCT CARD ================= */
 .product-card {
-    width: 400px;
+    width: 300px;
     background: white;
-    padding: 15px;
+    padding: 25px;
     border-radius: 6px;
     text-align: center;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
